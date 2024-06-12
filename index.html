@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matschema Vecka 27-31</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .week-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .week-selector select {
+            width: 150px;
+            padding: 5px;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td:first-child {
+            width: 20%;
+        }
+        td:nth-child(2), td:nth-child(3) {
+            width: 40%;
+        }
+        .hidden {
+            display: none;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .export-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const weeks = [27, 28, 29, 30, 31];
+            const days = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
+            const lunchOptions = [
+                "Annat",
+                "Smoothie och macka",
+                "Pannkakor med sylt och grädde",
+                "Sill och potatis",
+                "Kräm och mjölk",
+                "Grillad ostmacka",
+                "Tomat- och mozzarellasallad",
+                "Kall pastasallad med kyckling eller tonfisk",
+                "Äggröra med bacon och toast",
+                "Varmkorv med bröd",
+                "Tunnbrödsrullar med skinka och sallad",
+                "Kall potatissallad med lax",
+                "Fruktsallad med yoghurt",
+                "Grekisk sallad med fetaost och oliver",
+                "Omelett med grönsaker",
+                "Matiga muffins med ost och skinka"
+            ];
+            const dinnerOptions = [
+                "Annat",
+                "Pasta med köttfärssås",
+                "Vegetarisk lasagne",
+                "Spagetti carbonara",
+                "Stuvade makaroner med falukorv",
+                "Fiskpinnar med potatismos",
+                "Grillad lax med citron och dill",
+                "Ugnsbakad torsk/lax med citron- och dillsås",
+                "Vegetarisk lasagne",
+                "Rödbetsbiffar med fetaost och sallad",
+                "Grönsaksgryta med kokosmjölk",
+                "Bakad potatis",
+                "Fläskpannkaka",
+                "Korv stroganoff",
+                "Flygande Jakob",
+                "Tacos",
+                "Grillade hamburgare",
+                "Köttbullar med potatismos och lingonsylt",
+                "Pytt i panna",
+                "Pizza"
+            ];
+
+            function createTable(week) {
+                let table = `<div id="week-${week}" class="week hidden">
+                    <h2>Vecka ${week}</h2>
+                    <table>
+                        <tr>
+                            <th>Dag</th>
+                            <th>Lunch</th>
+                            <th>Middag</th>
+                        </tr>`;
+
+                days.forEach(day => {
+                    table += `<tr>
+                        <td>${day}</td>
+                        <td>
+                            <select class="lunch-dropdown"></select>
+                            <textarea placeholder="Kommentarer"></textarea>
+                        </td>
+                        <td>
+                            <select class="dinner-dropdown"></select>
+                            <textarea placeholder="Kommentarer"></textarea>
+                        </td>
+                    </tr>`;
+                });
+
+                table += `</table></div>`;
+                return table;
+            }
+
+            function populateDropdowns() {
+                document.querySelectorAll('.lunch-dropdown').forEach(dropdown => {
+                    lunchOptions.forEach(option => {
+                        let opt = document.createElement('option');
+                        opt.value = option;
+                        opt.innerHTML = option;
+                        dropdown.appendChild(opt);
+                    });
+                });
+
+                document.querySelectorAll('.dinner-dropdown').forEach(dropdown => {
+                    dinnerOptions.forEach(option => {
+                        let opt = document.createElement('option');
+                        opt.value = option;
+                        opt.innerHTML = option;
+                        dropdown.appendChild(opt);
+                    });
+                });
+            }
+
+            function showWeek(week) {
+                document.querySelectorAll('.week').forEach(weekTable => {
+                    weekTable.classList.add('hidden');
+                });
+                document.getElementById(`week-${week}`).classList.remove('hidden');
+            }
+
+            function exportAsImage() {
+                const element = document.body; // Du kan ändra detta till en specifik del av sidan om du vill
+                html2canvas(element).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = 'matschema.png';
+                    link.click();
+                });
+            }
+
+            weeks.forEach(week => {
+                document.body.insertAdjacentHTML('beforeend', createTable(week));
+            });
+
+            document.getElementById('week').addEventListener('change', function() {
+                showWeek(this.value);
+            });
+
+            populateDropdowns();
+            showWeek(27);
+        });
+    </script>
+</head>
+<body>
+    <h1>Matschema för semestern</h1>
+
+    <div class="week-selector">
+        <label for="week">Välj vecka:</label>
+        <select id="week">
+            <option value="27">Vecka 27</option>
+            <option value="28">Vecka 28</option>
+            <option value="29">Vecka 29</option>
+            <option value="30">Vecka 30</option>
+            <option value="31">Vecka 31</option>
+        </select>
+    </div>
+
+    <button class="export-button" onclick="exportAsImage()">Exportera som Bild</button>
+</body>
+</html>
