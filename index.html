@@ -78,12 +78,28 @@
             const wrapper = document.createElement('div');
             wrapper.style.padding = '20px';
             wrapper.style.backgroundColor = '#ffffff';
-            wrapper.appendChild(week.cloneNode(true));
+
+            // Klona noden för att bevara valen i dropdowns och textarea
+            const clonedWeek = week.cloneNode(true);
+
+            // Uppdatera klonade dropdowns och textareas med deras aktuella värden
+            const selects = week.querySelectorAll('select');
+            const clonedSelects = clonedWeek.querySelectorAll('select');
+            const textareas = week.querySelectorAll('textarea');
+            const clonedTextareas = clonedWeek.querySelectorAll('textarea');
+
+            selects.forEach((select, index) => {
+                clonedSelects[index].value = select.value;
+            });
+
+            textareas.forEach((textarea, index) => {
+                clonedTextareas[index].value = textarea.value;
+            });
+
+            wrapper.appendChild(clonedWeek);
             document.body.appendChild(wrapper);
 
-            console.log("Export function triggered for", week);
             html2canvas(wrapper, { scale: 2 }).then(canvas => {
-                console.log("Canvas created");
                 const imgData = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
                 link.href = imgData;
