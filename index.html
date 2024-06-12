@@ -75,14 +75,16 @@
     <script>
         function exportAsImage() {
             const week = document.querySelector('.week:not(.hidden)');
+            week.style.width = "1000px";  // Bredda tabellen för export
             console.log("Export function triggered for", week);
-            html2canvas(week).then(canvas => {
+            html2canvas(week, { scale: 2 }).then(canvas => {
                 console.log("Canvas created");
                 const imgData = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
                 link.href = imgData;
                 link.download = 'matschema.png';
                 link.click();
+                week.style.width = "";  // Återställ bredden efter export
             }).catch(error => {
                 console.error("Error creating canvas:", error);
             });
