@@ -126,7 +126,7 @@ END:VCALENDAR`;
 
             weeks.forEach((week, weekIndex) => {
                 days.forEach((day, dayIndex) => {
-                    const date = new Date(2023, 6, (week - 27) * 7 + dayIndex + 3).toISOString().slice(0, 10).replace(/-/g, '');
+                    const date = new Date(2024, 5, (week - 27) * 7 + dayIndex + 1).toISOString().slice(0, 10).replace(/-/g, '');
                     const lunchSelect = document.querySelector(`#week-${week} .lunch-dropdown:nth-of-type(${dayIndex + 1})`);
                     const dinnerSelect = document.querySelector(`#week-${week} .dinner-dropdown:nth-of-type(${dayIndex + 1})`);
 
