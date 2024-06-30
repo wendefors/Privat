@@ -131,10 +131,10 @@ END:VCALENDAR`;
 
     async function init() {
         const meals = await loadMeals();
-        populateDropdowns(meals.lunchOptions, meals.dinnerOptions);
         weeks.forEach(week => {
             document.body.insertAdjacentHTML('beforeend', createTable(week));
         });
+        populateDropdowns(meals.lunchOptions, meals.dinnerOptions);
         document.getElementById('week').addEventListener('change', function() {
             showWeek(this.value);
         });
