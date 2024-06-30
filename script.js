@@ -5,10 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const dinnerTime = { start: '173000', end: '183000' };
 
     async function loadMeals() {
-        const response = await fetch('meals.json');
-        const data = await response.json();
-        return data;
+    const response = await fetch('meals.json');
+    const data = await response.json();
+    console.log(data);  // Lägg till denna rad för att se innehållet
+    return data;
     }
+
 
     function saveSelections() {
         // Samma kod som tidigare
