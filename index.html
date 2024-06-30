@@ -127,8 +127,8 @@ END:VCALENDAR`;
             weeks.forEach((week, weekIndex) => {
                 days.forEach((day, dayIndex) => {
                     const date = new Date(2023, 6, (week - 27) * 7 + dayIndex + 3).toISOString().slice(0, 10).replace(/-/g, '');
-                    const lunchSelect = document.querySelector(`#week-${week} .lunch-dropdown:nth-child(${(dayIndex + 1) * 2})`);
-                    const dinnerSelect = document.querySelector(`#week-${week} .dinner-dropdown:nth-child(${(dayIndex + 1) * 2})`);
+                    const lunchSelect = document.querySelector(`#week-${week} .lunch-dropdown:nth-of-type(${dayIndex + 1})`);
+                    const dinnerSelect = document.querySelector(`#week-${week} .dinner-dropdown:nth-of-type(${dayIndex + 1})`);
 
                     const lunchButton = document.createElement('button');
                     lunchButton.innerText = 'Lägg till i kalendern';
@@ -250,9 +250,9 @@ END:VCALENDAR`;
             });
 
             populateDropdowns();
+            addICalButtons();
             loadSelections();
             showWeek(27);
-            addICalButtons();
         });
     </script>
 </head>
