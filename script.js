@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function createTable(week) {
-        // Samma kod som tidigare
+        // Samma kod som tidigare!
     }
 
     function showWeek(week) {
