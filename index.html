@@ -101,6 +101,48 @@
             });
         }
 
+        function createICalEvent(title, date, startTime, endTime) {
+            const icsFormat = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${title}
+DTSTART:${date}T${startTime}
+DTEND:${date}T${endTime}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsFormat], { type: 'text/calendar' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${title}.ics`;
+            link.click();
+        }
+
+        function addICalButtons() {
+            const weeks = [27, 28, 29, 30, 31];
+            const days = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
+            const lunchTime = { start: '113000', end: '123000' };
+            const dinnerTime = { start: '173000', end: '183000' };
+
+            weeks.forEach((week, weekIndex) => {
+                days.forEach((day, dayIndex) => {
+                    const date = new Date(2023, 6, (week - 27) * 7 + dayIndex + 3).toISOString().slice(0, 10).replace(/-/g, '');
+                    const lunchSelect = document.querySelector(`#week-${week} .lunch-dropdown:nth-child(${(dayIndex + 1) * 2})`);
+                    const dinnerSelect = document.querySelector(`#week-${week} .dinner-dropdown:nth-child(${(dayIndex + 1) * 2})`);
+
+                    const lunchButton = document.createElement('button');
+                    lunchButton.innerText = 'Lägg till i kalendern';
+                    lunchButton.onclick = () => createICalEvent(lunchSelect.value, date, lunchTime.start, lunchTime.end);
+                    lunchSelect.parentElement.appendChild(lunchButton);
+
+                    const dinnerButton = document.createElement('button');
+                    dinnerButton.innerText = 'Lägg till i kalendern';
+                    dinnerButton.onclick = () => createICalEvent(dinnerSelect.value, date, dinnerTime.start, dinnerTime.end);
+                    dinnerSelect.parentElement.appendChild(dinnerButton);
+                });
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             const weeks = [27, 28, 29, 30, 31];
             const days = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
@@ -210,6 +252,7 @@
             populateDropdowns();
             loadSelections();
             showWeek(27);
+            addICalButtons();
         });
     </script>
 </head>
