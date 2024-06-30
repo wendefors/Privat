@@ -67,11 +67,6 @@ END:VCALENDAR`;
     }
 
     function addICalButtons() {
-        const weeks = [27, 28, 29, 30, 31];
-        const days = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
-        const lunchTime = { start: '113000', end: '123000' };
-        const dinnerTime = { start: '173000', end: '183000' };
-
         weeks.forEach((week, weekIndex) => {
             days.forEach((day, dayIndex) => {
                 const date = new Date(2024, 6, (week - 27) * 7 + dayIndex + 2).toISOString().slice(0, 10).replace(/-/g, '');
@@ -141,6 +136,10 @@ END:VCALENDAR`;
         addICalButtons();
         loadSelections();
         showWeek(27);
+
+        document.querySelectorAll('select, textarea').forEach(element => {
+            element.addEventListener('change', saveSelections);
+        });
     }
 
     function populateDropdowns(lunchOptions, dinnerOptions) {
