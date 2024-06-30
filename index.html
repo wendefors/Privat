@@ -126,7 +126,7 @@ END:VCALENDAR`;
 
             weeks.forEach((week, weekIndex) => {
                 days.forEach((day, dayIndex) => {
-                    const date = new Date(2024, 6, (week - 27) * 7 + dayIndex + 1).toISOString().slice(0, 10).replace(/-/g, '');
+                    const date = new Date(2024, 6, (week - 27) * 7 + dayIndex).toISOString().slice(0, 10).replace(/-/g, '');
                     const weekElement = document.getElementById(`week-${week}`);
                     const rows = weekElement.querySelectorAll('tr');
 
