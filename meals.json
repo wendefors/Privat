@@ -1,0 +1,43 @@
+{
+    "lunchOptions": [
+        "Gör ett val",
+        "Annat",
+        "Smoothie och macka",
+        "Pannkakor med sylt och grädde",
+        "Sill och potatis",
+        "Kräm och mjölk",
+        "Grillad ostmacka",
+        "Tomat- och mozzarellasallad",
+        "Kall pastasallad med kyckling eller tonfisk",
+        "Äggröra med bacon och toast",
+        "Varmkorv med bröd",
+        "Tunnbrödsrullar med skinka och sallad",
+        "Kall potatissallad med lax",
+        "Fruktsallad med yoghurt",
+        "Grekisk sallad med fetaost och oliver",
+        "Omelett med grönsaker",
+        "Matiga muffins med ost och skinka"
+    ],
+    "dinnerOptions": [
+        "Gör ett val",
+        "Annat",
+        "Pasta med köttfärssås",
+        "Vegetarisk lasagne",
+        "Spagetti carbonara",
+        "Stuvade makaroner med falukorv",
+        "Fiskpinnar med potatismos",
+        "Grillad lax med citron och dill",
+        "Ugnsbakad torsk/lax med citron- och dillsås",
+        "Rödbetsbiffar med fetaost och sallad",
+        "Grönsaksgryta med kokosmjölk",
+        "Bakad potatis",
+        "Fläskpannkaka",
+        "Korv stroganoff",
+        "Flygande Jakob",
+        "Tacos",
+        "Grillade hamburgare",
+        "Köttbullar med potatismos och lingonsylt",
+        "Pytt i panna",
+        "Pizza"
+    ]
+}
