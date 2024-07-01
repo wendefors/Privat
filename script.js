@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const weeks = document.querySelectorAll('.week');
         weeks.forEach((week, weekIndex) => {
             const selects = week.querySelectorAll('select');
-            const textareas = week.querySelectorAll('textarea');
+            const inputs = week.querySelectorAll('input');
 
             selects.forEach((select, selectIndex) => {
                 localStorage.setItem(`week${weekIndex}_select${selectIndex}`, select.value);
             });
 
-            textareas.forEach((textarea, textareaIndex) => {
-                localStorage.setItem(`week${weekIndex}_textarea${textareaIndex}`, textarea.value);
+            inputs.forEach((input, inputIndex) => {
+                localStorage.setItem(`week${weekIndex}_input${inputIndex}`, input.value);
             });
         });
     }
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const weeks = document.querySelectorAll('.week');
         weeks.forEach((week, weekIndex) => {
             const selects = week.querySelectorAll('select');
-            const textareas = week.querySelectorAll('textarea');
+            const inputs = week.querySelectorAll('input');
 
             selects.forEach((select, selectIndex) => {
                 const savedValue = localStorage.getItem(`week${weekIndex}_select${selectIndex}`);
@@ -40,10 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
 
-            textareas.forEach((textarea, textareaIndex) => {
-                const savedValue = localStorage.getItem(`week${weekIndex}_textarea${textareaIndex}`);
+            inputs.forEach((input, inputIndex) => {
+                const savedValue = localStorage.getItem(`week${weekIndex}_input${inputIndex}`);
                 if (savedValue !== null) {
-                    textarea.value = savedValue;
+                    input.value = savedValue;
                 }
             });
         });
@@ -75,15 +75,17 @@ END:VCALENDAR`;
 
                 const lunchSelect = rows[dayIndex + 1].querySelector('.lunch-dropdown');
                 const dinnerSelect = rows[dayIndex + 1].querySelector('.dinner-dropdown');
+                const lunchInput = rows[dayIndex + 1].querySelector('.lunch-input');
+                const dinnerInput = rows[dayIndex + 1].querySelector('.dinner-input');
 
                 const lunchButton = document.createElement('button');
                 lunchButton.innerText = 'Lägg till i kalendern';
-                lunchButton.onclick = () => createICalEvent(lunchSelect.value, date, lunchTime.start, lunchTime.end);
+                lunchButton.onclick = () => createICalEvent(lunchInput.value, date, lunchTime.start, lunchTime.end);
                 lunchSelect.parentElement.appendChild(lunchButton);
 
                 const dinnerButton = document.createElement('button');
                 dinnerButton.innerText = 'Lägg till i kalendern';
-                dinnerButton.onclick = () => createICalEvent(dinnerSelect.value, date, dinnerTime.start, dinnerTime.end);
+                dinnerButton.onclick = () => createICalEvent(dinnerInput.value, date, dinnerTime.start, dinnerTime.end);
                 dinnerSelect.parentElement.appendChild(dinnerButton);
             });
         });
@@ -104,11 +106,11 @@ END:VCALENDAR`;
                 <td>${day}</td>
                 <td>
                     <select class="lunch-dropdown"></select>
-                    <textarea placeholder="Kommentarer"></textarea>
+                    <input type="text" class="lunch-input" placeholder="Kommentarer" />
                 </td>
                 <td>
                     <select class="dinner-dropdown"></select>
-                    <textarea placeholder="Kommentarer"></textarea>
+                    <input type="text" class="dinner-input" placeholder="Kommentarer" />
                 </td>
             </tr>`;
         });
@@ -137,8 +139,16 @@ END:VCALENDAR`;
         loadSelections();
         showWeek(27);
 
-        document.querySelectorAll('select, textarea').forEach(element => {
-            element.addEventListener('change', saveSelections);
+        document.querySelectorAll('select').forEach(element => {
+            element.addEventListener('change', function() {
+                const input = this.nextElementSibling;
+                input.value = this.value;
+                saveSelections();
+            });
+        });
+
+        document.querySelectorAll('input').forEach(element => {
+            element.addEventListener('input', saveSelections);
         });
     }
 
