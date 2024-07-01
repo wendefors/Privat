@@ -92,46 +92,42 @@ END:VCALENDAR`;
     }
 
     function createTable(week) {
+<<<<<<< HEAD
     let table = `<div id="week-${week}" class="week hidden">
         <h2>Vecka ${week}</h2>
         <table>
             <tr>
                 <th>Dag</th>
                 <th>Måltid</th>
-                <th>Kommentarer</th>
+                <th>Val</th>
+=======
+        let table = `<div id="week-${week}" class="week hidden">
+            <h2>Vecka ${week}</h2>
+            <table>
+                <tr>
+                    <th>Dag</th>
+                    <th>Lunch</th>
+                    <th>Middag</th>
+                </tr>`;
+
+        days.forEach(day => {
+            table += `<tr>
+                <td>${day}</td>
+                <td>
+                    <select class="lunch-dropdown"></select>
+                    <input type="text" class="lunch-input" placeholder="Kommentarer" />
+                </td>
+                <td>
+                    <select class="dinner-dropdown"></select>
+                    <input type="text" class="dinner-input" placeholder="Kommentarer" />
+                </td>
+>>>>>>> parent of 18719d8 (Update script.js)
             </tr>`;
+        });
 
-    days.forEach(day => {
-        table += `<tr>
-            <td rowspan="2">${day}</td>
-            <td>Lunch</td>
-            <td>
-                <select class="lunch-dropdown"></select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="text" class="lunch-input" placeholder="Kommentarer" />
-            </td>
-        </tr>
-        <tr>
-            <td>Middag</td>
-            <td>
-                <select class="dinner-dropdown"></select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="text" class="dinner-input" placeholder="Kommentarer" />
-            </td>
-        </tr>`;
-    });
-
-    table += `</table></div>`;
-    return table;
-}
+        table += `</table></div>`;
+        return table;
+    }
 
     function showWeek(week) {
         document.querySelectorAll('.week').forEach(weekTable => {
