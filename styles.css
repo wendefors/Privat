@@ -14,6 +14,7 @@ h1, h2 {
 .week-selector select {
     width: 100px;
     padding: 5px;
+    text-align: center;
 }
 
 table {
@@ -52,9 +53,4 @@ input[type="text"] {
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-}
-
-.week-selector select {
-    width: 100px;
-    padding: 5px;
 }
