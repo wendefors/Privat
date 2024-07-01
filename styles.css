@@ -14,7 +14,9 @@ h1, h2 {
 .week-selector select {
     width: 100px;
     padding: 5px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 table {
