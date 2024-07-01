@@ -4,7 +4,6 @@ body {
     color: #333;
     margin: 0;
     padding: 20px;
-    text-align: center;
 }
 
 h1, h2 {
@@ -12,7 +11,15 @@ h1, h2 {
     color: #4CAF50;
 }
 
-.week-selector-container {
+.week-selector select {
+    width: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.week-selector {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,14 +56,17 @@ th {
     display: none;
 }
 
+select, textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    resize: vertical;
+} 
+
 input[type="text"] {
     width: 90%;
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-}
-
-.week-selector-container select {
-    width: 100px;
-    padding: 5px;
 }
