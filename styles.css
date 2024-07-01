@@ -46,3 +46,15 @@ select, textarea {
     box-sizing: border-box;
     resize: vertical;
 } 
+
+input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.week-selector select {
+    width: 100px;
+    padding: 5px;
+}
