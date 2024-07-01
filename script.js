@@ -98,7 +98,7 @@ END:VCALENDAR`;
             <tr>
                 <th>Dag</th>
                 <th>Måltid</th>
-                <th>Kommentarer</th>
+                <th>Val</th>
             </tr>`;
 
     days.forEach(day => {
