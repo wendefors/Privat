@@ -110,7 +110,7 @@ END:VCALENDAR`;
                 </td>
                 <td>
                     <select class="dinner-dropdown"></select>
-                    <input type="text" class="dinner-input" placeholder="Kommentarer" />
+                    <input type="text" class="dinner-input" />
                 </td>
             </tr>`;
         });
