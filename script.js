@@ -141,7 +141,7 @@ END:VCALENDAR`;
 
         document.querySelectorAll('select').forEach(element => {
             element.addEventListener('change', function() {
-                const input = this.nextElementSibling;
+                const input = this.nextElementSibling; //comment
                 input.value = this.value;
                 saveSelections();
             });
