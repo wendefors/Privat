@@ -106,7 +106,7 @@ END:VCALENDAR`;
                 <td>${day}</td>
                 <td>
                     <select class="lunch-dropdown"></select>
-                    <input type="text" class="lunch-input" placeholder="Kommentarer" />
+                    <input type="text" class="lunch-input" />
                 </td>
                 <td>
                     <select class="dinner-dropdown"></select>
