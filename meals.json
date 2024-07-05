@@ -16,7 +16,9 @@
         "Fruktsallad med yoghurt",
         "Grekisk sallad med fetaost och oliver",
         "Omelett med grönsaker",
-        "Matiga muffins med ost och skinka"
+        "Matiga muffins med ost och skinka",
+        "Matlåda"
+
     ],
     "dinnerOptions": [
         "Gör ett val",
@@ -38,6 +40,8 @@
         "Grillade hamburgare",
         "Köttbullar med potatismos och lingonsylt",
         "Pytt i panna",
-        "Pizza"
+        "Pizza",
+        "Matlåda"
+
     ]
 }
