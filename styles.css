@@ -44,10 +44,11 @@ th {
 
 input[type="text"] {
     width: 90%;
+    height: 20px;
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-} //comment
+}
 
 .week-selector-container select {
     width: 100px;
